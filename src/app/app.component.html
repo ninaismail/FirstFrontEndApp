@@ -1,0 +1,6 @@
+<h1>{{title}}</h1>
+<ul *ngIf="tasksObservable | async; let tasks">
+    <li *ngFor="let task of tasks">
+        <span>{{task.name}}</span>
+    </li>
+</ul>
