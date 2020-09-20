@@ -1,12 +1,13 @@
 export interface ITask {
-    id: number;
-    name: string;
+  id: number;
+  title: string;
+}
+export class Task implements ITask {
+  id: number;
+  title: string;
+
+  constructor(taskData: any) {
+    this.id = taskData._id;
+    this.title = taskData.title;
   }
-  export class Task implements ITask{
-    id: number;
-    name: string;
-    constructor(taskData: any) {
-        this.id = taskData.id;
-        this.name = taskData.name;
-    }
 }
