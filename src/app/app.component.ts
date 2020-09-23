@@ -5,19 +5,23 @@ import { ITask, Task } from './ITask';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  styleUrls: ['./app.component.sass'],
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   title = 'Homework';
-  public tasks=[];
+  tasks = [];
   tasksObservable: Observable<Task[]>;
-  constructor(private service: AppServiceService){
-  }
-  ngOnInit(): void { 
-  this.service.getTasks().subscribe(tasks => {
-      this.tasks = tasks;
-  });
-    this.tasksObservable = this.service.getTasks();
-}
 
+  constructor(private service: AppServiceService) {}
+
+  ngOnInit(): void {
+    this.service.getTasks().subscribe((res) => {
+      // console.log(tasks);
+      if (res.success) {
+        this.tasks = res.data;
+      } else {
+        console.log(res.data);
+      }
+    });
+  }
 }
